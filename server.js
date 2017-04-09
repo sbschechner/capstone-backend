@@ -7,8 +7,8 @@ console.log("up and running");
 
 
 
-if (require.main === module){
+/*if (require.main === module){
 	runServer().catch(error => console.log(error));
-};
+}; */
 
 module.exports = {app};
