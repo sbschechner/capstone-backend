@@ -14,13 +14,10 @@ describe("making sure page is up and running", function(){
 		return chai.request(app)
 			.get("/")
 			.then(function(response){
-				response.should
-			})
+				response.should.have.status(200);
+			});
 	});
 
 
 }) //describe close bracket
 
-
-
- //hit up the root url for your client, you get a 200 status code and HTML
