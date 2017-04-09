@@ -1,2 +1,9 @@
 language: node_js
 node_js: node
+deploy:
+  provider: heroku
+  api_key:
+    secure: UoSEWf/imgSJJf2XR2iODmGn9J7KIhD2ChrYSjxB+MdaVGJqsDuPJdk2PpY861rHsyjCMALrCXpMKB0Nhzw2i8V7tRI5LisZT1dtDD/CY2RTmpYGih3oLd0202swd55vY1pCMqQ2RIRv0m2Sye9UZ5plb86mXMRYQpg7/xqs1DUa3hB2A1fU75HPZUGdn7WrOhsYuCbXQeHtR9bBTirilZgf/pNduaVEfdn5dpHo/xzBgsniukqr5Q5aYFCRjJ2rFQHHy4tUzDqemB+6AY+UggWY8qhe8kItsFeptqmRora0vCm7wcSJYYDTwhtmwj2/mPZZHRS6TN+++MdRK2GVsUA7Z3AnV+CPDsv05ETleVx1VE8fD5E2t3WfAkxvN30O/5Lv+YOSSOnqsmgd8ktcStChHEX5gCKjeCgmYY/QY0yeYqQzxz4ScognzZkvLhu+S567WX1AlbMMQ9yiWR2iTmLyal+EvuUZ+unh2Q0PfnnoJE/V5AI4px/U9bSWA5LtM1H3l6D4hI5+I2lyUrCNNBC+GPYAoaA+6IrbXbybxXx8TLuNwXFatb9f/fH3Efpi0U27HfZm3jZ3wzDKY7UxoXmcS4/UzqI3XgRU6L15L9oQkcqfXtEr6O35llYuAMi7WlgIp4MZ+OnjpY+AlMeyvQteqpLZosX1NPhf+w8VHJE=
+  app: shrouded-bayou-70080
+  on:
+    repo: sbschechner/capstone-backend
