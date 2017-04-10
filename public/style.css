@@ -2,6 +2,43 @@ body{
 background-color: blue;
 }
 
-h1{
-	margin: auto;
+.title{
+	
+	margin-left: 50%;
+	margin-bottom: 5%;
 }
+
+.display-container{
+	margin-left: 15%
+}
+
+.expense-group-title{
+	text-align: center;
+	padding-bottom: 3%;
+}
+
+.text-display-area{
+	border: solid;
+	background: white;
+	width: 80%;
+	margin-bottom: 10px;
+	max-height: 450px;
+	overflow: auto;
+}
+
+.button-bar{
+	padding-left: 15%;
+}
+
+.totals-display-area{
+	border: solid;
+	background: white;
+	width: 80%;
+	overflow: auto;
+	margin-top: 25px;
+}
+
+.totals-header{
+	text-align: center;
+}
+
