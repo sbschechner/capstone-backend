@@ -6,7 +6,7 @@ var faker = require('faker');
 var should = chai.should() //allows for the should.be syntax
 
 var {app, runServer, closeServer} = require("../server");
-var {ExpenseGrouper} = require("../models");
+var {Expenses} = require("../models");
 var {TEST_DATABASE_URL} = require("../config");
 
 chai.use(chaiHttp);
@@ -27,3 +27,4 @@ describe("making sure page is up and running", function(){
 
 }) //describe close bracket
 
+//need to do run / close server at before and after each to make sure test are independet

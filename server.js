@@ -12,16 +12,29 @@ var {Expenses} = require('./models');
 
 
 var app = express();
-app.use(express.static('public'));
+app.use(express.static('public')); //allows the server where to look in public for templates
 app.use(morgan('common'));
 app.use(bodyParser.json);
+var path = require('path');
 
 
 //get request
 app.get("/expenseTracker", function(request, response){
-	//MANIUPLATION OF THE MONGO DB TO RETURN GET
+	Expenses
+		.find()
+		.limit(20)
+		.exec()
+		.then(function(expenses){
+			response.json({expenses: expenses.map(
+				(expense)=>
+				expense.apiReturn())
+				});
+			})
+		.catch(error =>{
+			console.log(error);
+			response.status(500).json({message:"error getting that data"});
+		});
 })
-
 
 
 // in case someone uses an endpoing that doesn't exist
