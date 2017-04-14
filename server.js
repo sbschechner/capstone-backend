@@ -10,32 +10,40 @@ var {PORT, DATABASE_URL} = require('./config');
 var {Expenses} = require('./models');
 
 
-
 var app = express();
-app.use(express.static('public')); //allows the server where to look in public for templates
+app.use(express.static(__dirname + '/public')); //allows the server where to look in public for templates
 app.use(morgan('common'));
-app.use(bodyParser.json);
-var path = require('path');
+app.use(bodyParser.json());
 
 
 //get request
 app.get("/expenseTracker", function(request, response){
+	console.log("hitting the tracker");
 	Expenses
 		.find()
-		.limit(20)
+		.limit(10)
 		.exec()
 		.then(function(expenses){
 			response.json({expenses: expenses.map(
-				(expense)=>
+				(expense) =>
 				expense.apiReturn())
 				});
 			})
 		.catch(error =>{
-			console.log(error);
+			console.error(error);
 			response.status(500).json({message:"error getting that data"});
 		});
-})
+	});
 
+app.get("/expenseTracker/:id", function(request,response){
+	Expenses
+		.findById(request.params.id)
+		.exec()
+		.then(expense => response.json(expense.apiReturn()))
+		.catch(error => {
+			console.error(500).json({message: "Get Error by Id: Internal Server Error"})
+		});
+	});
 
 // in case someone uses an endpoing that doesn't exist
 app.use("*", function(request,response){
@@ -85,4 +93,4 @@ if (require.main === module){
 	runServer().catch(error => console.log(error));
 };
 
-module.exports = {app, runServer, closeServer};
+module.exports = {app,runServer,closeServer};
