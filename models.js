@@ -21,7 +21,7 @@ expenseSchema.methods.apiReturn = function(){
 		name: this.name,
 		amount: this.amount,
 		assignee:this.assigneeFull
-	};
+	}
 }
 
 
