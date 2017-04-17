@@ -41,49 +41,30 @@ var mockApiData = { //eessentially this is going to be my schema for the expense
 	}, 100);
 } */
 
-var heroku_Url = "https://shrouded-bayou-70080.herokuapp.com"
-
+//var heroku_Url = "https://shrouded-bayou-70080.herokuapp.com"
+var local = "http://localhost:8080"
 
 function getAllExpenses(callBack){ 
 	$.ajax({
 		method: "GET",
-		url: heroku_Url + "/expenseTracker",
+		//url: heroku_Url + "/expenseTracker",
+		url: local + "/expenseTracker",
 		success: function (data){
+			console.log("retrieving data")
+			console.log(data);
 			callBack(data);
 		}
 	})
 }
 
-
-//MODAL ACTIVITIES:
-//from the put button
-//function putModal() {
-	var modal = document.getElementById('addExpense-modal');
-	var btn = document.getElementById("createBtn");
-	var span = document.getElementsByClassName("close")[0];
-
-	btn.onclick = function() { //
-	    modal.style.display = "block";
-	}
-
-	span.onclick = function() {
-	    modal.style.display = "none";
-	}
-
-	window.onclick = function(event) {
-	    if (event.target == modal) {
-	        modal.style.display = "none";
-	    }
-	}
-//}
  
 function displayExpenses(data){ //takes the info and puts it into the li format I have -- need to double check with schema names
 	$(".text-display").empty();
 	for (index in data.groupExpenses){
 		$(".text-display").append(
-			"<li>" + "Expense Name: " + data.groupExpenses[index].name +  
-			", Total Amount: "+ data.groupExpenses[index].expenseAmount + 
-			",  Assigned to: " + data.groupExpenses[index].assignee +
+			"<li>" + "Expense Name: " + data.Expenses[index].name +  
+			", Total Amount: "+ data.Expenses[index].expenseAmount + 
+			",  Assigned to: " + data.Expenses[index].assignee +
 			"</li>"
 			);
 	}
@@ -93,12 +74,43 @@ function getAndDisplayExpenses(){
 	getAllExpenses(displayExpenses);
 }
 
+//can have a function called get totals wihch is get and display above but passes a total function instead of display
+
 $(".update-overall-button").click(function(){ //adding the functionality of the update overall button
 	console.log("adding items");
 	getAndDisplayExpenses();
 });
 
+//MODAL ACTIVITIES:
+//how do i change the value of submit text to say update instead of submit? use the attr feature
+
+
 $(".create-button").click(function(){
 	console.log("running the put modal");
-	//putModal();
+	$(".modal").toggleClass("hidden");
+	var span = document.getElementsByClassName("close")[0];
+	span.onclick = function() {
+	   $(".modal").toggleClass("hidden");
+	}
+	window.onclick = function(event) {
+	    if (event.target == modal) {
+	        $(".modal").toggleClass("hidden");
+	    }
+	}
+	
+});
+
+$(".update-button").click(function(){
+	console.log("running the update modal")
+	$(".modal").toggleClass("hidden");
+	$("#modalSubmit").attr('value', 'Update');
+	var span = document.getElementsByClassName("close")[0];
+	span.onclick = function() {
+	   $(".modal").toggleClass("hidden");
+	}
+	window.onclick = function(event) {
+	    if (event.target == modal) {
+	        $(".modal").toggleClass("hidden");
+	    }
+	}
 })
