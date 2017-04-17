@@ -31,13 +31,26 @@ var mockApiData = { //eessentially this is going to be my schema for the expense
 
 //since other buttons will requie a modal, I am going to connect only the update all button which should connect to the DB
 
-function getAllExpenses(callBack){ //will make this an AJAX call when actually set up API
+/*function getAllExpenses(callBack){ //will make this an AJAX call when actually set up API
 	setTimeout(function(){
 		callBack(mockApiData)
 	}, 100);
-}
+} */
 
-function displayExpenses(data){ //takes the info and puts it into the li format I have
+var heroku_Url = "https://shrouded-bayou-70080.herokuapp.com"
+
+
+function getAllExpenses(callBack){ 
+	$.ajax({
+		method: "GET",
+		url: heroku_Url + "/expenseTracker",
+		success: function (data){
+			callBack(data);
+		};
+	})
+
+
+function displayExpenses(data){ //takes the info and puts it into the li format I have -- need to double check with schema names
 	$(".text-display").empty();
 	for (index in data.groupExpenses){
 		$(".text-display").append(
