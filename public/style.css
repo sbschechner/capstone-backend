@@ -65,15 +65,15 @@ background-color: blue;
 	margin-top: 5%;
 }
 
-#createExpenseName{
+#ExpenseName{
 	width: 173px;
 }
 
-#createExpenseAmount{
+#ExpenseAmount{
 	width: 180px;
 }
 
-#createExpenseAssignee{
+#ExpenseAssignee{
 	width: 193px;
 }
 

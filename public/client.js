@@ -81,13 +81,20 @@ $(".update-overall-button").click(function(){ //adding the functionality of the 
 	getAndDisplayExpenses();
 });
 
+
 //MODAL ACTIVITIES:
 //how do i change the value of submit text to say update instead of submit? use the attr feature
+//how do i get the text from the form?! for the post request
+//
 
 
 $(".create-button").click(function(){
 	console.log("running the put modal");
 	$(".modal").toggleClass("hidden");
+	$(".modal-header").text("Please Input the Following:");
+	$("#ExpenseName").attr("required", "true");
+	$("#ExpenseAmount").attr("required", "true");
+	$("#modalSubmit").attr('value', 'Submit New Expense');
 	var span = document.getElementsByClassName("close")[0];
 	span.onclick = function() {
 	   $(".modal").toggleClass("hidden");
@@ -103,14 +110,41 @@ $(".create-button").click(function(){
 $(".update-button").click(function(){
 	console.log("running the update modal")
 	$(".modal").toggleClass("hidden");
-	$("#modalSubmit").attr('value', 'Update');
+	$(".modal-header").text("Please enter updated fields");
+	$("#modalSubmit").attr('value', 'Update Expenses');
 	var span = document.getElementsByClassName("close")[0];
 	span.onclick = function() {
 	   $(".modal").toggleClass("hidden");
+	   $("#ExpenseAmount").removeClass("hidden");
+	   $("#ExpenseAmountText").removeClass("hidden");
 	}
 	window.onclick = function(event) {
 	    if (event.target == modal) {
 	        $(".modal").toggleClass("hidden");
+	        $("#ExpenseAmount").removeClass("hidden");
+	        $("#ExpenseAmountText").removeClass("hidden");
+	    }
+	}
+})
+
+$(".assign-button").click(function(){
+	console.log("running the assign modal")
+	$(".modal").toggleClass("hidden");
+	$(".modal-header").text("Please enter Expense Name to be assigned");
+	$("#ExpenseAmount").addClass("hidden");
+	$("#ExpenseAmountText").addClass("hidden");
+	$("#modalSubmit").attr('value', 'Assign Expenses');
+	var span = document.getElementsByClassName("close")[0];
+	span.onclick = function() {
+	   $(".modal").toggleClass("hidden");
+	   $("#ExpenseAmount").removeClass("hidden");
+	   $("#ExpenseAmountText").removeClass("hidden");
+	}
+	window.onclick = function(event) {
+	    if (event.target == modal) {
+	        $(".modal").toggleClass("hidden");
+	        $("#ExpenseAmount").removeClass("hidden");
+	        $("#ExpenseAmountText").removeClass("hidden");
 	    }
 	}
 })
