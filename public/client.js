@@ -1,5 +1,9 @@
 
+<<<<<<< HEAD
 /*var mockApiData = { //eessentially this is going to be my schema for the expenses
+=======
+var mockApiData = { //eessentially this is going to be my schema for the expenses
+>>>>>>> 18c1d54508c156a0b58a5b31e4c3a4ccf3f5fcd0
 	"groupExpenses" : [
 		{	
 			"id": "1111111",
@@ -27,7 +31,11 @@
 		},
 	]
 };
+<<<<<<< HEAD
 */
+=======
+
+>>>>>>> 18c1d54508c156a0b58a5b31e4c3a4ccf3f5fcd0
 
 //since other buttons will requie a modal, I am going to connect only the update all button which should connect to the DB
 
@@ -46,9 +54,14 @@ function getAllExpenses(callBack){
 		url: heroku_Url + "/expenseTracker",
 		success: function (data){
 			callBack(data);
+<<<<<<< HEAD
 		 }
 		})
 	};
+=======
+		};
+	})
+>>>>>>> 18c1d54508c156a0b58a5b31e4c3a4ccf3f5fcd0
 
 
 function displayExpenses(data){ //takes the info and puts it into the li format I have -- need to double check with schema names
