@@ -37,7 +37,7 @@
 			<button class="button update-overall-button">
 				Update entire List
 			</button>
-			<button class="button create-button">
+			<button class="button create-button" id="createBtn">
 				Create new Expense
 			</button>
 			<button class="button update-button">
@@ -50,6 +50,34 @@
 				Delete Expense
 			</button>
 		</div>	
+
+	<div id="addExpense-modal" class="modal">
+
+  		<div class="modal-content">
+    		<span class="close">close</span>
+    		
+    		<h2 class="modal-header">Please input the following:</h2>
+    		<div class="form-containter">	
+    			<form class = "modalForm">
+	    			Expense Name:
+	    			<input type="text" name="expenseName" placeholder="i.e Lunch Bill" id="createExpenseName">
+	    			<br>
+	    			<br>
+	    			Total Amount:
+	    			<input type="text" name="expenseAmount" placeholder="$76" id="createExpenseAmount">
+	    			<br>
+	    			<br>
+	    			Who Covered:
+	    			<input type="text" name="expenseAssignee" placeholder="Jessica" id="createExpenseAssignee">
+	    			<br>
+	    			<br>
+	    			<input class="modalSubmit" type="submit" value="OMMMMG">
+    			</form>
+    		</div>
+  		</div>
+
+	</div>
+
 
 		<div class="totals-display-area">
 			<h3 class="totals-header">

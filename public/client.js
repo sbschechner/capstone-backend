@@ -55,6 +55,27 @@ function getAllExpenses(callBack){
 }
 
 
+//MODAL ACTIVITIES:
+//from the put button
+//function putModal() {
+	var modal = document.getElementById('addExpense-modal');
+	var btn = document.getElementById("createBtn");
+	var span = document.getElementsByClassName("close")[0];
+
+	btn.onclick = function() { //
+	    modal.style.display = "block";
+	}
+
+	span.onclick = function() {
+	    modal.style.display = "none";
+	}
+
+	window.onclick = function(event) {
+	    if (event.target == modal) {
+	        modal.style.display = "none";
+	    }
+	}
+//}
 
 function displayExpenses(data){ //takes the info and puts it into the li format I have -- need to double check with schema names
 	$(".text-display").empty();
@@ -77,3 +98,7 @@ $(".update-overall-button").click(function(){ //adding the functionality of the 
 	getAndDisplayExpenses();
 });
 
+$(".create-button").click(function(){
+	console.log("running the put modal");
+	//putModal();
+})
