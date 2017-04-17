@@ -76,7 +76,7 @@ function getAllExpenses(callBack){
 	    }
 	}
 //}
-
+ 
 function displayExpenses(data){ //takes the info and puts it into the li format I have -- need to double check with schema names
 	$(".text-display").empty();
 	for (index in data.groupExpenses){
