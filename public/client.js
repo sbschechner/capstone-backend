@@ -85,7 +85,7 @@ $(".update-overall-button").click(function(){ //adding the functionality of the 
 //MODAL ACTIVITIES:
 //how do i change the value of submit text to say update instead of submit? use the attr feature
 //how do i get the text from the form?! for the post request
-//
+//prob will need validation in terms of type of string for the create / post response
 
 
 $(".create-button").click(function(){

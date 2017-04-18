@@ -116,6 +116,30 @@ describe("Expense Tracker API and Endpoints Tests", function() {
 
 //the next describe for my next test ....the Post would be here,
 
+	describe("testing the post endpoint",function(){
+		it("should add an expense", function(){
+			var newExpense = generateSeedData();
+				return chai.request(app)
+					.post("/expenseTracker")
+					.send(newExpense)
+					.then(function(response){
+						response.should.have.status(201);
+						response.should.be.json;
+						response.should.be.a('object');
+						response.body.should.include.key(
+							"name", "amount", "assignee");
+						response.body.id.should.not.be.null;
+						response.body.name.should.equal(newExpense.name);
+						response.body.amount.should.equal(newExpense.amount);
+						return Expenses.findById(response.body.id)
+					})
+					.then(function(expense){
+						expense.name.should.equal(newExpense.name);
+						expense.amount.should.equal(newExpense.amount);
+					});
+			});
+		});
+
 }); //describe close with independent tests
 
 

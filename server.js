@@ -48,7 +48,7 @@ app.get("/expenseTracker/:id", function(request,response){
 app.post("/expenseTracker", function(request,response){
 
 	//checking the request has the right components for a post request
-	var requiredFields = ["name", "amount",];
+	var requiredFields = ["name", "amount", "assignee"];
 	for (var i=0; i<requiredFields.length; i++){
 		var field = requiredFields[i];
 		if(!(field in request.body)){
@@ -63,8 +63,8 @@ app.post("/expenseTracker", function(request,response){
 			name : request.body.name,
 			amount: request.body.amount,
 			assignee: request.body.assignee,
-		})
-		.then(expense => response.status(201).json(post.apiReturn()))
+			})
+		.then(expense => response.status(201).json(expense.apiReturn()))
 		.catch (error => {
 			console.log(error);
 			response.status(500).json({message : "post error : internal service error"});
