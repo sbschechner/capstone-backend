@@ -49,7 +49,7 @@ app.post("/expenseTracker", function(request,response){
 
 	//checking the request has the right components for a post request
 	var requiredFields = ["name", "amount",];
-	for (var i=0, i<requiredFields.length, i++){
+	for (var i=0; i<requiredFields.length; i++){
 		var field = requiredFields[i];
 		if(!(field in request.body)){
 			var message = "you are missing \`${field}\` in body "
