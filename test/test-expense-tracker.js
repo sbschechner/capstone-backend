@@ -37,12 +37,9 @@ function generateSeedData(){
 	return {
 		name: generateName(),
 		amount: generateAmount(),
-		assignee: {
-					first: faker.name.firstName(),
-					last: faker.name.lastName(),
-					}
+		assignee: faker.name.findName()
 	}
-}
+}	
 
 //need to create tear down requests to keep tests independent from each other
 

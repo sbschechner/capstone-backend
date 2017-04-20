@@ -3,7 +3,7 @@ var mongoose = require("mongoose");
 var expenseSchema = mongoose.Schema({
 	name: {type: String, required: true },
 	amount: {type: Number, required: true, default: 0},
-	assignee: {type: String}
+	assignee: {type: String},
 });
 
 

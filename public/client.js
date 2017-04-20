@@ -42,9 +42,9 @@ function displayExpenses(data){ //takes the info and puts it into the li format 
 	$(".text-display").empty();
 	for (index in data.expenses){
 		$(".text-display").append(
-			"<li>" + "Expense Name: " + data.expenses[index].name +  
-			", Total Amount: "+ data.expenses[index].amount + 
-			",  Assigned to: " + data.expenses[index].assignee +
+			"<li>" + "Expense Name:   " + data.expenses[index].name +  
+			", Total Amount:    "+ data.expenses[index].amount + 
+			",  Assigned to:      " + data.expenses[index].assignee +
 			"</li>"
 			);
 	}
@@ -75,6 +75,7 @@ $(".create-button").click(function(){
 	$("#ExpenseName").attr("required", "true");
 	$("#ExpenseAmount").attr("required", "true");
 	$("#modalSubmit").attr('value', 'Submit New Expense');
+	$("#modalSelect").addClass("hidden");
 	$("#modalSubmit").click(function(event){
 		event.preventDefault(); 
 		console.log("form submitted");
