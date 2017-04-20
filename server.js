@@ -46,13 +46,13 @@ app.get("/expenseTracker/:id", function(request,response){
 	});
 
 app.post("/expenseTracker", function(request,response){
-
+	console.log("hitting the post right now", request.body);
 	//checking the request has the right components for a post request
 	var requiredFields = ["name", "amount", "assignee"];
 	for (var i=0; i<requiredFields.length; i++){
 		var field = requiredFields[i];
 		if(!(field in request.body)){
-			var message = "you are missing \`${field}\` in body "
+			var message = `you are missing \`${field}\` in body `
 			console.log(message);
 			return response.status(400).send(message);
 		}

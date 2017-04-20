@@ -3,16 +3,8 @@ var mongoose = require("mongoose");
 var expenseSchema = mongoose.Schema({
 	name: {type: String, required: true },
 	amount: {type: Number, required: true, default: 0},
-	assignee: {
-				firstName: {type: String, default: "no"},
-				lastName: {type: String, default: "one"}
-				},
-
+	assignee: {type: String}
 });
-
-expenseSchema.virtual("assigneeFull").get(function(){
-	return `${this.assignee.firstName} ${this.assignee.lastName}`.trim()
-	});
 
 
 expenseSchema.methods.apiReturn = function(){
@@ -20,7 +12,7 @@ expenseSchema.methods.apiReturn = function(){
 		id: this._id,
 		name: this.name,
 		amount: this.amount,
-		assignee:this.assigneeFull
+		assignee:this.assignee
 	}
 }
 
