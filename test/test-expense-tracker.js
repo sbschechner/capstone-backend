@@ -137,6 +137,27 @@ describe("Expense Tracker API and Endpoints Tests", function() {
 			});
 		});
 
+	describe("testing the delete request", function(){
+
+		it("should remove the expense by the id", function(){
+			var expense;
+			return Expenses
+				.findOne()
+				.exec()
+				.then(function(_expense){
+					expense = _expense;
+					return chai.request(app).delete(`/expenseTracker/${expense.id}`);
+				})
+				.then(function(response){
+					response.should.have.status(204);
+					return Expenses.findById(expense.id).exec()
+				})
+				.then(function(_expense){
+					should.not.exist(_expense);
+				});
+		});
+	});
+
 }); //describe close with independent tests
 
 

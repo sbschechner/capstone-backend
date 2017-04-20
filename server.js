@@ -72,6 +72,18 @@ app.post("/expenseTracker", function(request,response){
 
 });
 
+
+app.delete("/expenseTracker/:id", function(request, response){
+	Expenses
+		.findByIdAndRemove(request.params.id)
+		.exec()
+		.then(expense => {
+			console.log(`You have deleted ${request.params.name}`)
+			response.status(204).end()
+			})
+		.catch(error => response.status(500).json({message: "Internal Service Error: Delete Error"}));
+});
+
 // in case someone uses an endpoing that doesn't exist
 app.use("*", function(request,response){
 	response.status(404).json({message: "Not Found"});
