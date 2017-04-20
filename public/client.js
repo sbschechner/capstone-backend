@@ -42,9 +42,9 @@ function displayExpenses(data){ //takes the info and puts it into the li format 
 	$(".text-display").empty();
 	for (index in data.expenses){
 		$(".text-display").append(
-			"<li>" + "Expense Name:   " + data.expenses[index].name +  
-			", Total Amount:    "+ data.expenses[index].amount + 
-			",  Assigned to:      " + data.expenses[index].assignee +
+			"<li>" + "Expense Name: " + data.expenses[index].name +  
+			" .................. Total Amount: $  "+ data.expenses[index].amount + 
+			"  ....................     Assigned to:  " + data.expenses[index].assignee +
 			"</li>"
 			);
 	}
@@ -81,7 +81,7 @@ $(".create-button").click(function(){
 		console.log("form submitted");
 		var name = $("#ExpenseName").val().trim();
 		var amount = $("#ExpenseAmount").val().trim();
-		var assignee = $("#ExpenseAssignee").val().trim();
+		var assignee = $("#ExpenseAssignee").val().trim() || "Not Yet Assigned";
 		postANewExpense(name, amount, assignee);
 		getAndDisplayExpenses();
 		$("#modalSubmit").off();
@@ -92,10 +92,12 @@ $(".create-button").click(function(){
 	var span = document.getElementsByClassName("close")[0];
 	span.onclick = function() {
 	   $(".modal").toggleClass("hidden");
+	   $("#modalSelect").removeClass("hidden");
 	}
 	window.onclick = function(event) {
 	    if (event.target == modal) {
 	        $(".modal").toggleClass("hidden");
+	        $("#modalSelect").removeClass("hidden");
 	    }
 	}
 	
@@ -152,7 +154,7 @@ $(".delete-button").click(function(){
 	$("#modalSubmit").attr('value', 'Delete');
 	var optionMarkup = "";
 	store.expenses.forEach(function(expense){
-		optionMarkup = optionMarkup.concat("<option>" + expense.name <"/option>");
+		optionMarkup = optionMarkup.concat("<option value='" + expense.id + "'>"+ expense.name <"/option>");
 	})
 	$("#modalSelect").append(optionMarkup);
 	var span = document.getElementsByClassName("close")[0];
