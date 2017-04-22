@@ -46,6 +46,30 @@ function deleteANewExpense(expenseID){
 	})
 }
 
+function putANewRequest(arrayNumber, amounts, assignees, expenseID){
+	var updatedField = {}
+		updatedField.name = store.expenses[arrayNumber].name
+		updatedField.id = expenseID
+		updatedField.amount = amounts
+		updatedField.assignee = assignees
+		if (amounts === ""){
+		updatedField.amount = store.expenses[arrayNumber].amount;
+		}
+		if (assignees === ""){
+		updatedField.assignee = store.expenses[arrayNumber].assignee;
+		}
+		console.log(updatedField)
+	$.ajax({
+		type:"PUT",
+		//url: heroku_Url + "/expenseTracker" + expenseID,
+		url: local + "/expenseTracker/" + expenseID,
+		contentType: 'application/json',
+		data: JSON.stringify(updatedField),
+		success: function(){
+			alert("Expense Updated");
+		}
+	})
+}
  
 function displayExpenses(data){ //takes the info and puts it into the li format I have -- need to double check with schema names
 	$(".text-display").empty();
@@ -64,36 +88,26 @@ function getAndDisplayExpenses(){
 }
 
 /*
+function createTotals(){
+	var totalsObj = {};
+	for (index in store.expenses){
+		if (!(store.expenses[index] in totalsObj)){
+		totalsObj[store.expenses[index].assignee] = store.expenses[index].amount
+		}
+
+		if (store.expenses[index] in totalsObj){
+			totalsObj[store.expenses[index].assignee] = totalsObj[store.expenses[index].assignee] + store.expenses[index].amount
+		}
+	}
+	console.log("printing the totals", totalsObj);
+	$(".totals-display").empty();
+	$(".totals-display").append(Object.entries(totalsObj))
+}
+
 function getAndOrderTotals(){
 	getAllExpenses(createTotals);
-
-function createTotals(){
-	var totals = {
-	alreadyMarked : null, 
-	}
-	for (index in store.expenses){
-		if (store.expenses[index].name in totals)
-			totals.store.expenses[index].name = totals.store.expenses[index]./// NEED TO WORK THROUGH
-		if(!(store.expenses[index.name]))
-	}
-
-
-	$(".totals-display").append
 }
 */
-
-//can have a function called get totals wihch is get and display above but passes a total function instead of display
-
-$(".update-overall-button").click(function(){ //adding the functionality of the update overall button
-	console.log("adding items");
-	getAndDisplayExpenses();
-});
-
-
-//MODAL ACTIVITIES:
-//how do i change the value of submit text to say update instead of submit? use the attr feature
-//how do i get the text from the form?! for the post request....when hit submit, these values get passed to that post function
-//prob will need validation in terms of type of string for the create / post response
 
 
 $(".create-button").click(function(){
@@ -118,6 +132,7 @@ $(".create-button").click(function(){
 		var assignee = $("#ExpenseAssignee").val().trim() || "Not Yet Assigned";
 		postANewExpense(name, amount, assignee);
 		getAndDisplayExpenses();
+		getAndOrderTotals();
 		$("#modalSubmit").off();
 		$("#ExpenseName").val("");
 		$("#ExpenseAmount").val("");
@@ -142,8 +157,38 @@ $(".create-button").click(function(){
 $(".update-button").click(function(){
 	console.log("running the update modal")
 	$(".modal").toggleClass("hidden");
-	$(".modal-header").text("Please enter updated fields");
+	$(".modal-header").text("Please select expense to update and corrected fields");
 	$("#modalSubmit").attr('value', 'Update Expenses');
+	$("#expenseNameText").addClass("hidden");
+	$("#ExpenseName").addClass("hidden");
+	$("#ExpenseAmountText").removeClass("hidden");
+	$("#ExpenseAmount").removeClass("hidden");
+	$("#expenseAssigneeText").removeClass("hidden");
+	$("#ExpenseAssignee").removeClass("hidden");
+	$("#modalSelect").empty();
+	$("#modalSelect").removeClass("hidden");
+	$("#modalSubmit").off();
+	for (index in store.expenses){	
+		$("#modalSelect").append(
+			"<option value='"+store.expenses[index].id+"'>"+store.expenses[index].name+"</option>")
+	}
+	$("#modalSubmit").click(function(event){
+		event.preventDefault();
+		var e = document.getElementById("modalSelect");
+		var selected = e.options[e.selectedIndex].value;
+		var arrayNumber = e.options.selectedIndex;
+		console.log(selected);
+		var amount = $("#ExpenseAmount").val().trim();
+		var assignee = $("#ExpenseAssignee").val().trim();
+		putANewRequest(arrayNumber, amount, assignee, selected);
+		getAndDisplayExpenses();
+		$("#modalSubmit").off();
+		$(".modal").addClass("hidden");
+		$("#ExpenseName").val("");
+		$("#ExpenseAmount").val("");
+		$("#ExpenseAssignee").val("");
+	})
+	
 	var span = document.getElementsByClassName("close")[0];
 	span.onclick = function() {
 	   $(".modal").toggleClass("hidden");
@@ -166,6 +211,32 @@ $(".assign-button").click(function(){
 	$("#ExpenseAmount").addClass("hidden");
 	$("#ExpenseAmountText").addClass("hidden");
 	$("#modalSubmit").attr('value', 'Assign Expenses');
+	$("#expenseNameText").addClass("hidden");
+	$("#ExpenseName").addClass("hidden");
+	$("#modalSelect").empty();
+	$("#modalSelect").removeClass("hidden");
+	$("#modalSubmit").off();
+	for (index in store.expenses){
+		$("#modalSelect").append(
+			"<option value='"+store.expenses[index].id+"'>"+store.expenses[index].name+"</option>")
+	}
+	$("#modalSubmit").click(function(event){
+		event.preventDefault();
+		var e = document.getElementById("modalSelect");
+		var selected = e.options[e.selectedIndex].value;
+		var arrayNumber = e.options.selectedIndex;
+		console.log(selected);
+		var amount = $("#ExpenseAmount").val().trim();
+		var assignee = $("#ExpenseAssignee").val().trim();
+		putANewRequest(arrayNumber, amount, assignee, selected);
+		getAndDisplayExpenses();
+		$("#modalSubmit").off();
+		$(".modal").addClass("hidden");
+		$("#ExpenseName").val("");
+		$("#ExpenseAmount").val("");
+		$("#ExpenseAssignee").val("");
+	})
+
 	var span = document.getElementsByClassName("close")[0];
 	span.onclick = function() {
 	   $(".modal").toggleClass("hidden");
@@ -192,9 +263,9 @@ $(".delete-button").click(function(){
 	$("#expenseAssigneeText").addClass("hidden");
 	$("#ExpenseAssignee").addClass("hidden");
 	$("#modalSubmit").attr('value', 'Delete');
-	var optionMarkup = "";
 	$("#modalSelect").empty();
 	$("#modalSelect").removeClass("hidden");
+	$("#modalSubmit").off();
 	for (index in store.expenses){
 		$("#modalSelect").append(
 			"<option value='"+store.expenses[index].id+"'>"+store.expenses[index].name+"</option>")
@@ -208,6 +279,7 @@ $(".delete-button").click(function(){
 		getAndDisplayExpenses();
 		$("#modalSubmit").off();
 		$(".modal").addClass("hidden");
+
 	})
 
 	var span = document.getElementsByClassName("close")[0];
@@ -225,3 +297,7 @@ $(".delete-button").click(function(){
 	}
 })
 
+$(function(){ //make sure always pulls the initial db
+	getAndDisplayExpenses();
+	//getAndOrderTotals();
+});
