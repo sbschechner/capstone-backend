@@ -72,6 +72,33 @@ app.post("/expenseTracker", function(request,response){
 
 });
 
+app.put("/expenseTracker/:id", function(request, response){
+	if (!(request.params.id && request.body.id && request.params.id === request.body.id)){
+		var message = (`request path id ${request.params.id} and request body id` +
+			`${request.body.id} must match`)
+		console.error(message);
+		response.status(500).json({message: message});
+	}
+
+	var toUpdate = {};
+	var updateableFields = ['name', 'amount', 'assignee'];
+	updateableFields.forEach(field => {
+		if (field in request.body){
+			toUpdate[field] = request.body[field];
+		}
+	})
+	console.log(request.body);
+	console.log(request.params.id);
+	console.log(toUpdate);
+
+	Expenses
+		.findByIdAndUpdate(request.params.id, {$set: {name : toUpdate.name, amount : toUpdate.amount, assignee : toUpdate.assignee}}, {new : true})
+		.exec()
+		.then(expense => response.status(201).json(expense.apiReturn()))
+		.catch(error => response.status(500).json({message: "Put Request Internall error"}));
+
+});
+
 
 app.delete("/expenseTracker/:id", function(request, response){
 	Expenses
