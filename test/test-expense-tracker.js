@@ -37,12 +37,9 @@ function generateSeedData(){
 	return {
 		name: generateName(),
 		amount: generateAmount(),
-		assignee: {
-					first: faker.name.firstName(),
-					last: faker.name.lastName(),
-					}
+		assignee: faker.name.findName()
 	}
-}
+}	
 
 //need to create tear down requests to keep tests independent from each other
 
@@ -115,6 +112,51 @@ describe("Expense Tracker API and Endpoints Tests", function() {
 
 
 //the next describe for my next test ....the Post would be here,
+
+	describe("testing the post endpoint",function(){
+		it("should add an expense", function(){
+			var newExpense = generateSeedData();
+				return chai.request(app)
+					.post("/expenseTracker")
+					.send(newExpense)
+					.then(function(response){
+						response.should.have.status(201);
+						response.should.be.json;
+						response.should.be.a('object');
+						response.body.should.include.key(
+							"name", "amount", "assignee");
+						response.body.id.should.not.be.null;
+						response.body.name.should.equal(newExpense.name);
+						response.body.amount.should.equal(newExpense.amount);
+						return Expenses.findById(response.body.id)
+					})
+					.then(function(expense){
+						expense.name.should.equal(newExpense.name);
+						expense.amount.should.equal(newExpense.amount);
+					});
+			});
+		});
+
+	describe("testing the delete request", function(){
+
+		it("should remove the expense by the id", function(){
+			var expense;
+			return Expenses
+				.findOne()
+				.exec()
+				.then(function(_expense){
+					expense = _expense;
+					return chai.request(app).delete(`/expenseTracker/${expense.id}`);
+				})
+				.then(function(response){
+					response.should.have.status(204);
+					return Expenses.findById(expense.id).exec()
+				})
+				.then(function(_expense){
+					should.not.exist(_expense);
+				});
+		});
+	});
 
 }); //describe close with independent tests
 

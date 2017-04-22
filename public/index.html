@@ -11,7 +11,7 @@
 </head>
 <body>
 <header class="nav-bar">
-	<h1 class="title"> AWESOME APP NAME</h1>
+	<h1 class="title"> Who Paid?</h1>
 	<img>
 </header>
 
@@ -34,9 +34,6 @@
 		
 	</div>	
 		<div class="button-bar">
-			<button class="button update-overall-button">
-				Update entire List
-			</button>
 			<button class="button create-button">
 				Create new Expense
 			</button>
@@ -50,6 +47,37 @@
 				Delete Expense
 			</button>
 		</div>	
+ 
+	<div id="modal" class="hidden modal">
+
+  		<div class="modal-content">
+    		<span class="close"> Close </span>
+    		
+    		<h2 class="modal-header">Please input the following:</h2>
+    		<div class="form-containter">	
+    			<form class = "modalForm">
+	    			<span id= "expenseNameText"> Expense Name: </span>
+	    			<input type="text" name="expenseName" placeholder="i.e Lunch Bill" id="ExpenseName">
+	    			<br>
+	    			<br>
+	    			<span id="ExpenseAmountText"> Total Amount: </span>
+	    			<input type="text" name="expenseAmount" placeholder="$76" id="ExpenseAmount">
+	    			<br>
+	    			<br>
+	    			<span id="expenseAssigneeText">Who Covered:</span>
+	    			<input type="text" name="expenseAssignee" placeholder="Jessica" id="ExpenseAssignee">
+	    			<br>
+	    			<br>
+	    			<input class="modalSubmit" id="modalSubmit" type="submit" value="OMMMMG">
+	    			<select id="modalSelect">
+	    				<option value="modalOption">choice1</option>
+	    			</select>
+    			</form>
+    		</div>
+  		</div>
+
+	</div>
+
 
 		<div class="totals-display-area">
 			<h3 class="totals-header">

@@ -45,6 +45,45 @@ app.get("/expenseTracker/:id", function(request,response){
 		});
 	});
 
+app.post("/expenseTracker", function(request,response){
+	console.log("hitting the post right now", request.body);
+	//checking the request has the right components for a post request
+	var requiredFields = ["name", "amount", "assignee"];
+	for (var i=0; i<requiredFields.length; i++){
+		var field = requiredFields[i];
+		if(!(field in request.body)){
+			var message = `you are missing \`${field}\` in body `
+			console.log(message);
+			return response.status(400).send(message);
+		}
+	}
+
+	Expenses
+		.create({
+			name : request.body.name,
+			amount: request.body.amount,
+			assignee: request.body.assignee,
+			})
+		.then(expense => response.status(201).json(expense.apiReturn()))
+		.catch (error => {
+			console.log(error);
+			response.status(500).json({message : "post error : internal service error"});
+		});
+
+});
+
+
+app.delete("/expenseTracker/:id", function(request, response){
+	Expenses
+		.findByIdAndRemove(request.params.id)
+		.exec()
+		.then(expense => {
+			console.log(`You have deleted ${request.params.name}`)
+			response.status(204).end()
+			})
+		.catch(error => response.status(500).json({message: "Internal Service Error: Delete Error"}));
+});
+
 // in case someone uses an endpoing that doesn't exist
 app.use("*", function(request,response){
 	response.status(404).json({message: "Not Found"});

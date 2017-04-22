@@ -1,0 +1,42 @@
+Next Steps:
+
+Create a wire frame of the Client
+	//create new expense will have to be a modal that pops up with required fields
+
+	//I want delete and update expense to ask user to select the expense they want to delete
+		console.alert(Select the expense you want to update)
+
+	//Assign Expense will also need to ask user to select which expense they want to assign
+		Then, will ask with a modal, who do they wany to assign it to ?
+
+		how to use a modal for later:
+		https://www.w3schools.com/howto/howto_css_modals.asp
+			instead of get element by ID, can just use jquery for the button names...
+
+Create a mock API call with data
+
+Then build back end to make API calls actually work 
+
+
+Maybe call the app - Who Paid
+	As in, who paid for what?
+
+
+Need to create the put request handler
+
+need to create the delete endp
+	how do i designed this? 
+		like the user wont know 
+			the modal would have to drop to the bottom and then it would click
+				if .click, it would have to say alert
+
+I SHOULD write the end point for delete first and get the test up and running
+	Then worry about how to wire the different pieces together
+		will use the select feautre and option to pull up all the different possible options
+			Then, once the user selects the one to delete, that is the one I will bind to a delete varialbe which i can pass to an AJAX request
+
+Will need to put validations on for the post request in terms of numbers and strings using typeOf
+
+
+
+
