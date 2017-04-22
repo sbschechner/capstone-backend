@@ -38,7 +38,7 @@ function postANewExpense(names, amounts, assignees){
 function deleteANewExpense(expenseID){
 	$.ajax({
 		type: "DELETE",
-		url: heroku_Url + "/expenseTracker" + expenseID,
+		url: heroku_Url + "/expenseTracker/" + expenseID,
 		//url: local + "/expenseTracker/" + expenseID,
 		success: function(){
 			alert("Expense Deleted");
@@ -61,7 +61,7 @@ function putANewRequest(arrayNumber, amounts, assignees, expenseID){
 		console.log(updatedField)
 	$.ajax({
 		type:"PUT",
-		url: heroku_Url + "/expenseTracker" + expenseID,
+		url: heroku_Url + "/expenseTracker/" + expenseID,
 		//url: local + "/expenseTracker/" + expenseID,
 		contentType: 'application/json',
 		data: JSON.stringify(updatedField),
