@@ -158,6 +158,35 @@ describe("Expense Tracker API and Endpoints Tests", function() {
 		});
 	});
 
+	describe("testing the put request", function(){
+		it("should update the fields", function(){
+			var updateData = {
+				name : "updated Name",
+				amount : "updated amount",
+			};
+			return Expenses
+				.findOne()
+				.exec()
+				.then(function(expense){
+					updateData.id = expense.id
+					console.log("updating " + expense.id)
+					return chai.request(app)
+						.put(`/expenseTracker/${expense.id}`)
+						.send(updateData);
+
+				})
+				.then(function(response){
+					response.should.have.status(201);
+					console.log(response.body);
+					return Expenses.findById(response.body.id).exec();
+				})
+				.then(function(expense){
+					expense.name.should.equal(updateData.name);
+				//	expense.amount.should.equal(updateData.amount);
+				});
+		})
+	})
+
 }); //describe close with independent tests
 
 
