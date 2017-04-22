@@ -35,7 +35,16 @@ function postANewExpense(names, amounts, assignees){
 	})
 }
 
-
+function deleteANewExpense(expenseID){
+	$.ajax({
+		type: "DELETE",
+		//url: heroku_Url + "/expenseTracker",
+		url: local + "/expenseTracker/" + expenseID,
+		success: function(){
+			alert("Expense Deleted");
+		}
+	})
+}
 
  
 function displayExpenses(data){ //takes the info and puts it into the li format I have -- need to double check with schema names
@@ -54,6 +63,22 @@ function getAndDisplayExpenses(){
 	getAllExpenses(displayExpenses);
 }
 
+/*
+function getAndOrderTotals(){
+	getAllExpenses(createTotals);
+}
+
+function createTotals(){
+	var totals = {
+	alreadyMarked : null, 
+	}
+	for (index in store.expenses){
+		if (store.expenses[index].name in totals)
+			totals.store.expenses[index].name = totals.store.expenses[index].amount /// NEED TO WORK THROUGH
+	}
+	$(".totals-display").append
+}
+*/
 //can have a function called get totals wihch is get and display above but passes a total function instead of display
 
 $(".update-overall-button").click(function(){ //adding the functionality of the update overall button
@@ -153,10 +178,20 @@ $(".delete-button").click(function(){
 	$("#ExpenseAmountText").addClass("hidden");
 	$("#modalSubmit").attr('value', 'Delete');
 	var optionMarkup = "";
-	store.expenses.forEach(function(expense){
-		optionMarkup = optionMarkup.concat("<option value='" + expense.id + "'>"+ expense.name <"/option>");
+	$("#modalSelect").empty();
+	for (index in store.expenses){
+		$("#modalSelect").append(
+			"<option value='"+store.expenses[index].id+"'>"+store.expenses[index].name+"</option>")
+	}
+	$("#modalSubmit").click(function(event){
+		event.preventDefault();
+		var e = document.getElementById("modalSelect");
+		var selected = e.options[e.selectedIndex].value;
+		console.log(selected);
+		deleteANewExpense(selected);
+		getAndDisplayExpenses();
 	})
-	$("#modalSelect").append(optionMarkup);
+
 	var span = document.getElementsByClassName("close")[0];
 	span.onclick = function() {
 	   $(".modal").toggleClass("hidden");
