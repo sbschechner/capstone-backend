@@ -162,7 +162,7 @@ describe("Expense Tracker API and Endpoints Tests", function() {
 		it("should update the fields", function(){
 			var updateData = {
 				name : "updated Name",
-				amount : "updated amount",
+				amount : 190,
 			};
 			return Expenses
 				.findOne()
@@ -182,7 +182,7 @@ describe("Expense Tracker API and Endpoints Tests", function() {
 				})
 				.then(function(expense){
 					expense.name.should.equal(updateData.name);
-				//	expense.amount.should.equal(updateData.amount);
+					expense.amount.should.equal(updateData.amount);
 				});
 		})
 	})

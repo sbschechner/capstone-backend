@@ -92,7 +92,7 @@ app.put("/expenseTracker/:id", function(request, response){
 	console.log(toUpdate);
 
 	Expenses
-		.findByIdAndUpdate(request.params.id, {name : toUpdate.name}, {new : true}) //something wrong with this set section
+		.findByIdAndUpdate(request.params.id, {$set: {name : toUpdate.name, amount : toUpdate.amount, assignee : toUpdate.assignee}}, {new : true})
 		.exec()
 		.then(expense => response.status(201).json(expense.apiReturn()))
 		.catch(error => response.status(500).json({message: "Put Request Internall error"}));
