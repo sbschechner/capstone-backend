@@ -22,11 +22,6 @@ Maybe call the app - Who Paid
 	As in, who paid for what?
 
 
-Need to bind the data from the modal to the request for the post request -- by doing this, I'll figure out how to do it for put request as well --- to pass to AJAX or just use the form action/ method?
-
-Need to create a post request handler
-	Need to put in the wiring for the post request??
-
 Need to create the put request handler
 
 need to create the delete endp
@@ -35,6 +30,10 @@ need to create the delete endp
 			the modal would have to drop to the bottom and then it would click
 				if .click, it would have to say alert
 
+I SHOULD write the end point for delete first and get the test up and running
+	Then worry about how to wire the different pieces together
+		will use the select feautre and option to pull up all the different possible options
+			Then, once the user selects the one to delete, that is the one I will bind to a delete varialbe which i can pass to an AJAX request
 
 Will need to put validations on for the post request in terms of numbers and strings using typeOf
 

@@ -66,7 +66,6 @@ function getAndDisplayExpenses(){
 /*
 function getAndOrderTotals(){
 	getAllExpenses(createTotals);
-}
 
 function createTotals(){
 	var totals = {
@@ -74,11 +73,15 @@ function createTotals(){
 	}
 	for (index in store.expenses){
 		if (store.expenses[index].name in totals)
-			totals.store.expenses[index].name = totals.store.expenses[index].amount /// NEED TO WORK THROUGH
+			totals.store.expenses[index].name = totals.store.expenses[index]./// NEED TO WORK THROUGH
+		if(!(store.expenses[index.name]))
 	}
+
+
 	$(".totals-display").append
 }
 */
+
 //can have a function called get totals wihch is get and display above but passes a total function instead of display
 
 $(".update-overall-button").click(function(){ //adding the functionality of the update overall button
@@ -97,6 +100,12 @@ $(".create-button").click(function(){
 	console.log("running the put modal");
 	$(".modal").toggleClass("hidden");
 	$(".modal-header").text("Please Input the Following:");
+	$("#ExpenseAmount").removeClass("hidden");
+	$("#expenseNameText").removeClass("hidden");
+	$("#ExpenseName").removeClass("hidden");
+	$("#ExpenseAmountText").removeClass("hidden");
+	$("#expenseAssigneeText").removeClass("hidden");
+	$("#ExpenseAssignee").removeClass("hidden");
 	$("#ExpenseName").attr("required", "true");
 	$("#ExpenseAmount").attr("required", "true");
 	$("#modalSubmit").attr('value', 'Submit New Expense');
@@ -113,6 +122,8 @@ $(".create-button").click(function(){
 		$("#ExpenseName").val("");
 		$("#ExpenseAmount").val("");
 		$("#ExpenseAssignee").val("");
+		$(".modal").addClass("hidden");
+
 	})
 	var span = document.getElementsByClassName("close")[0];
 	span.onclick = function() {
@@ -172,13 +183,18 @@ $(".assign-button").click(function(){
 
 $(".delete-button").click(function(){
 	console.log("running the delete modal")
-	$(".modal").toggleClass("hidden");
+	$(".modal").removeClass("hidden");
 	$(".modal-header").text("Which expense would you like to delete?");
 	$("#ExpenseAmount").addClass("hidden");
+	$("#expenseNameText").addClass("hidden");
+	$("#ExpenseName").addClass("hidden");
 	$("#ExpenseAmountText").addClass("hidden");
+	$("#expenseAssigneeText").addClass("hidden");
+	$("#ExpenseAssignee").addClass("hidden");
 	$("#modalSubmit").attr('value', 'Delete');
 	var optionMarkup = "";
 	$("#modalSelect").empty();
+	$("#modalSelect").removeClass("hidden");
 	for (index in store.expenses){
 		$("#modalSelect").append(
 			"<option value='"+store.expenses[index].id+"'>"+store.expenses[index].name+"</option>")
@@ -190,6 +206,8 @@ $(".delete-button").click(function(){
 		console.log(selected);
 		deleteANewExpense(selected);
 		getAndDisplayExpenses();
+		$("#modalSubmit").off();
+		$(".modal").addClass("hidden");
 	})
 
 	var span = document.getElementsByClassName("close")[0];

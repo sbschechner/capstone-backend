@@ -34,9 +34,6 @@
 		
 	</div>	
 		<div class="button-bar">
-			<button class="button update-overall-button">
-				Update entire List
-			</button>
 			<button class="button create-button">
 				Create new Expense
 			</button>
@@ -59,7 +56,7 @@
     		<h2 class="modal-header">Please input the following:</h2>
     		<div class="form-containter">	
     			<form class = "modalForm">
-	    			Expense Name:
+	    			<span id= "expenseNameText"> Expense Name: </span>
 	    			<input type="text" name="expenseName" placeholder="i.e Lunch Bill" id="ExpenseName">
 	    			<br>
 	    			<br>
@@ -67,7 +64,7 @@
 	    			<input type="text" name="expenseAmount" placeholder="$76" id="ExpenseAmount">
 	    			<br>
 	    			<br>
-	    			Who Covered:
+	    			<span id="expenseAssigneeText">Who Covered:</span>
 	    			<input type="text" name="expenseAssignee" placeholder="Jessica" id="ExpenseAssignee">
 	    			<br>
 	    			<br>
