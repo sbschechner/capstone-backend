@@ -1,15 +1,17 @@
 body{
-background-color: blue;
+background-color: aliceblue;
+font-family: 'Raleway', sans-serif;
 }
 
 .title{
-	
+	color: cornflowerblue;
 	text-align: center;
 	margin-bottom: 5%;
+	margin-top: 5%;
 }
 
 .display-container{
-	margin-left: 15%
+	margin-left: 18%;
 }
 
 .expense-group-title{
@@ -19,11 +21,14 @@ background-color: blue;
 
 .text-display-area{
 	border: solid;
-	background: white;
+	border-radius: 10px;
+	background: whitesmoke;
 	width: 80%;
 	margin-bottom: 10px;
 	max-height: 450px;
 	overflow: auto;
+	color: cornflowerblue;
+	max-width: 800px;
 }
 
 .button-bar{
@@ -32,10 +37,13 @@ background-color: blue;
 
 .totals-display-area{
 	border: solid;
-	background: white;
+	border-radius: 10px;
+	background: whitesmoke;
 	width: 80%;
 	overflow: auto;
 	margin-top: 25px;
+	color: cornflowerblue;
+	max-width: 800px;
 }
 
 .totals-header{
