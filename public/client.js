@@ -132,7 +132,7 @@ $(".create-button").click(function(){
 		var assignee = $("#ExpenseAssignee").val().trim() || "Not Yet Assigned";
 		postANewExpense(name, amount, assignee);
 		getAndDisplayExpenses();
-		getAndOrderTotals();
+		//getAndOrderTotals();
 		$("#modalSubmit").off();
 		$("#ExpenseName").val("");
 		$("#ExpenseAmount").val("");
