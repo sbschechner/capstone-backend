@@ -1,17 +1,17 @@
 
-//var heroku_Url = "https://shrouded-bayou-70080.herokuapp.com"
+var heroku_Url = "https://shrouded-bayou-70080.herokuapp.com"
 
 var store = {
 	expenses : []
 }
 
-var local = "http://localhost:8080"
+//var local = "http://localhost:8080"
 
 function getAllExpenses(callBack){ 
 	$.ajax({
 		type: "GET",
-		//url: heroku_Url + "/expenseTracker",
-		url: local + "/expenseTracker",
+		url: heroku_Url + "/expenseTracker",
+		//url: local + "/expenseTracker",
 		success: function (data){
 			console.log("retrieving data"),
 			store.expenses = data.expenses;
@@ -24,8 +24,8 @@ function getAllExpenses(callBack){
 function postANewExpense(names, amounts, assignees){
 	$.ajax({
 		type: "POST",
-		//url: heroku_Url + "/expenseTracker",
-		url: local + "/expenseTracker",
+		url: heroku_Url + "/expenseTracker",
+		//url: local + "/expenseTracker",
 		contentType: 'application/json',
 		dataType: "json",
 		data: JSON.stringify({name: names, amount: amounts, assignee: assignees}),
@@ -38,8 +38,8 @@ function postANewExpense(names, amounts, assignees){
 function deleteANewExpense(expenseID){
 	$.ajax({
 		type: "DELETE",
-		//url: heroku_Url + "/expenseTracker/" + expenseID,
-		url: local + "/expenseTracker/" + expenseID,
+		url: heroku_Url + "/expenseTracker/" + expenseID,
+		//url: local + "/expenseTracker/" + expenseID,
 		success: function(){
 			alert("Expense Deleted");
 		}
@@ -61,8 +61,8 @@ function putANewRequest(arrayNumber, amounts, assignees, expenseID){
 		console.log(updatedField)
 	$.ajax({
 		type:"PUT",
-		//url: heroku_Url + "/expenseTracker/" + expenseID,
-		url: local + "/expenseTracker/" + expenseID,
+		url: heroku_Url + "/expenseTracker/" + expenseID,
+		//url: local + "/expenseTracker/" + expenseID,
 		contentType: 'application/json',
 		data: JSON.stringify(updatedField),
 		success: function(){
