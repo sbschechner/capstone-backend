@@ -87,27 +87,34 @@ function getAndDisplayExpenses(){
 	getAllExpenses(displayExpenses);
 }
 
-/*
+
 function createTotals(){
-	var totalsObj = {};
+	var	expensesList = [];
+			
 	for (index in store.expenses){
-		if (!(store.expenses[index] in totalsObj)){
-		totalsObj[store.expenses[index].assignee] = store.expenses[index].amount
+		if (expensesList.includes(store.expenses[index].assignee)){
+			var indexLocation = expensesList.indexOf(store.expenses[index].assignee)
+			expensesList[indexLocation +1] = store.expenses[index].amount + expensesList[indexLocation+1]
+		}	
+
+		if (!(expensesList.includes(store.expenses[index].assignee))){
+			expensesList.push(store.expenses[index].assignee);
+			expensesList.push(store.expenses[index].amount);
 		}
 
-		if (store.expenses[index] in totalsObj){
-			totalsObj[store.expenses[index].assignee] = totalsObj[store.expenses[index].assignee] + store.expenses[index].amount
-		}
 	}
-	console.log("printing the totals", totalsObj);
+	console.log("printing the totals", expensesList);
 	$(".totals-display").empty();
-	$(".totals-display").append(Object.entries(totalsObj))
-}
+	for (var i = 0; i<expensesList.length; i=i+2){
+		$(".totals-display").append(
+		"<li>" + expensesList[i] + " : $ " + expensesList[i+1] + "</li>"
+			)}
+	}
 
 function getAndOrderTotals(){
 	getAllExpenses(createTotals);
 }
-*/
+
 
 
 $(".create-button").click(function(){
@@ -132,7 +139,7 @@ $(".create-button").click(function(){
 		var assignee = $("#ExpenseAssignee").val().trim() || "Not Yet Assigned";
 		postANewExpense(name, amount, assignee);
 		getAndDisplayExpenses();
-		//getAndOrderTotals();
+		getAndOrderTotals();
 		$("#modalSubmit").off();
 		$("#ExpenseName").val("");
 		$("#ExpenseAmount").val("");
@@ -182,6 +189,7 @@ $(".update-button").click(function(){
 		var assignee = $("#ExpenseAssignee").val().trim();
 		putANewRequest(arrayNumber, amount, assignee, selected);
 		getAndDisplayExpenses();
+		getAndOrderTotals();
 		$("#modalSubmit").off();
 		$(".modal").addClass("hidden");
 		$("#ExpenseName").val("");
@@ -230,6 +238,7 @@ $(".assign-button").click(function(){
 		var assignee = $("#ExpenseAssignee").val().trim();
 		putANewRequest(arrayNumber, amount, assignee, selected);
 		getAndDisplayExpenses();
+		getAndOrderTotals()
 		$("#modalSubmit").off();
 		$(".modal").addClass("hidden");
 		$("#ExpenseName").val("");
@@ -277,6 +286,7 @@ $(".delete-button").click(function(){
 		console.log(selected);
 		deleteANewExpense(selected);
 		getAndDisplayExpenses();
+		getAndOrderTotals();
 		$("#modalSubmit").off();
 		$(".modal").addClass("hidden");
 
@@ -299,5 +309,5 @@ $(".delete-button").click(function(){
 
 $(function(){ //make sure always pulls the initial db
 	getAndDisplayExpenses();
-	//getAndOrderTotals();
+	getAndOrderTotals();
 });
