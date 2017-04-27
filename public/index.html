@@ -21,17 +21,16 @@
 		Trip Name
 	</h2>
 	<div class="text-display-area">
-		<ul class="text-display">
-			<li>
-				displaying text
-			</li>
-			<li>
-				second item
-			</li>
-			<li>
-				testing if wraps - lorem ipsem Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-			</li>
-		</ul>
+		<table class="text-display">
+			<tr>
+				<th> Name</th>
+				<th> Amount </th>
+				<th>Who Paid</th>
+			</tr>
+
+
+		</table>
+
 		
 	</div>	
 		<div class="button-bar">
@@ -40,9 +39,6 @@
 			</button>
 			<button class="button update-button">
 				Update Expense Amount
-			</button>
-			<button class="button assign-button">
-				Assign Expense
 			</button>
 			<button class="button delete-button">
 				Delete Expense
@@ -62,7 +58,7 @@
 	    			<br>
 	    			<br>
 	    			<span id="ExpenseAmountText"> Total Amount: </span>
-	    			<input type="text" name="expenseAmount" placeholder="76" id="ExpenseAmount">
+	    			<input type="number" name="expenseAmount" placeholder="76" id="ExpenseAmount">
 	    			<br>
 	    			<br>
 	    			<span id="expenseAssigneeText">Who Covered:</span>

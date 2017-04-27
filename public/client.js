@@ -1,17 +1,14 @@
 
-var heroku_Url = "https://shrouded-bayou-70080.herokuapp.com"
+
 
 var store = {
 	expenses : []
 }
 
-//var local = "http://localhost:8080"
-
 function getAllExpenses(callBack){ 
 	$.ajax({
 		type: "GET",
-		url: heroku_Url + "/expenseTracker",
-		//url: local + "/expenseTracker",
+		url: "/expenseTracker",
 		success: function (data){
 			console.log("retrieving data"),
 			store.expenses = data.expenses;
@@ -24,8 +21,7 @@ function getAllExpenses(callBack){
 function postANewExpense(names, amounts, assignees){
 	$.ajax({
 		type: "POST",
-		url: heroku_Url + "/expenseTracker",
-		//url: local + "/expenseTracker",
+		url: "/expenseTracker",
 		contentType: 'application/json',
 		dataType: "json",
 		data: JSON.stringify({name: names, amount: amounts, assignee: assignees}),
@@ -38,8 +34,7 @@ function postANewExpense(names, amounts, assignees){
 function deleteANewExpense(expenseID){
 	$.ajax({
 		type: "DELETE",
-		url: heroku_Url + "/expenseTracker/" + expenseID,
-		//url: local + "/expenseTracker/" + expenseID,
+		url:"/expenseTracker/" + expenseID,
 		success: function(){
 			alert("Expense Deleted");
 		}
@@ -61,8 +56,7 @@ function putANewRequest(arrayNumber, amounts, assignees, expenseID){
 		console.log(updatedField)
 	$.ajax({
 		type:"PUT",
-		url: heroku_Url + "/expenseTracker/" + expenseID,
-		//url: local + "/expenseTracker/" + expenseID,
+		url: "/expenseTracker/" + expenseID,
 		contentType: 'application/json',
 		data: JSON.stringify(updatedField),
 		success: function(){
@@ -73,12 +67,18 @@ function putANewRequest(arrayNumber, amounts, assignees, expenseID){
  
 function displayExpenses(data){ //takes the info and puts it into the li format I have -- need to double check with schema names
 	$(".text-display").empty();
+	$(".text-display").append(
+				"<tr>" + "<th id='table-input-header-name'> Name</th>" + 
+				"<th id='table-input-header-amount'> Amount </th>" +
+				"<th id='table-input-header-person'>Who Paid</th>" + 
+				"</tr>"+
+				"<tr> </tr>");
 	for (index in data.expenses){
 		$(".text-display").append(
-			"<li>" + "Expense Name: " + data.expenses[index].name +  
-			" .................. Total Amount: $  "+ data.expenses[index].amount + 
-			"  ....................     Assigned to:  " + data.expenses[index].assignee +
-			"</li>"
+			"<tr>" + "<td id='table-input-name'>" + data.expenses[index].name + "</td>" +
+			"<td id='table-input-amount'> $"+ data.expenses[index].amount +  "</td>" +"<td id='table-input-person'>"
+			 + data.expenses[index].assignee + "</td>"+
+			"</tr>"
 			);
 	}
 }
@@ -137,9 +137,15 @@ $(".create-button").click(function(){
 		var name = $("#ExpenseName").val().trim();
 		var amount = $("#ExpenseAmount").val().trim();
 		var assignee = $("#ExpenseAssignee").val().trim() || "Not Yet Assigned";
+		if (typeof Number.parseFloat(amount)  === "number") {
+		  console.log("the if statement works");
 		postANewExpense(name, amount, assignee);
 		getAndDisplayExpenses();
 		getAndOrderTotals();
+		}
+		else{
+			alert("Numbers only please");
+		}
 		$("#modalSubmit").off();
 		$("#ExpenseName").val("");
 		$("#ExpenseAmount").val("");

@@ -31,6 +31,39 @@ font-family: 'Raleway', sans-serif;
 	max-width: 800px;
 }
 
+.text-display{
+	min-width: 500px;
+}
+
+#table-input-header-name{
+	text-decoration: underline;
+	font-size: 20px;
+}
+
+#table-input-header-amount{
+	padding-left: 20%;
+	text-decoration: underline;
+	font-size: 20px;
+}
+
+#table-input-header-person{
+	padding-left: 20%;
+	text-decoration: underline;
+	font-size: 20px;
+}
+
+#table-input-name{
+	padding-left: 5%;
+}
+
+#table-input-amount{
+	padding-left: 20%;
+}
+
+#table-input-person{
+	padding-left: 18%;
+}
+
 .button-bar{
 	padding-left: 15%;
 }
