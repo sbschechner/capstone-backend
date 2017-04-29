@@ -8,6 +8,7 @@ font-family: 'Raleway', sans-serif;
 	text-align: center;
 	margin-bottom: 5%;
 	margin-top: 5%;
+	font-family: 'Eagle Lake', cursive;
 }
 
 .display-container{
@@ -28,7 +29,9 @@ font-family: 'Raleway', sans-serif;
 	max-height: 450px;
 	overflow: auto;
 	color: cornflowerblue;
-	max-width: 800px;
+	max-width: 700px;
+	padding-left: 10%;
+	margin-left: 5%;
 }
 
 .text-display{
@@ -36,36 +39,43 @@ font-family: 'Raleway', sans-serif;
 }
 
 #table-input-header-name{
+	padding-left: 15%;
 	text-decoration: underline;
 	font-size: 20px;
+	font-family: 'Eagle Lake', cursive;
+	font-weight: 700px;
 }
 
 #table-input-header-amount{
-	padding-left: 20%;
+	padding-left: 15%;
 	text-decoration: underline;
 	font-size: 20px;
+	font-family: 'Eagle Lake', cursive;
+	font-weight: 700px;
 }
 
 #table-input-header-person{
-	padding-left: 20%;
+	padding-left: 13%;
 	text-decoration: underline;
 	font-size: 20px;
+	font-family: 'Eagle Lake', cursive;
+	font-weight: 700px;
 }
 
 #table-input-name{
-	padding-left: 5%;
+	padding-left: 14%;
 }
 
 #table-input-amount{
-	padding-left: 20%;
+	padding-left: 14%;
 }
 
 #table-input-person{
-	padding-left: 18%;
+	padding-left: 12%;
 }
 
 .button-bar{
-	padding-left: 15%;
+	padding-left: 25%;
 }
 
 .totals-display-area{
@@ -76,11 +86,16 @@ font-family: 'Raleway', sans-serif;
 	overflow: auto;
 	margin-top: 25px;
 	color: cornflowerblue;
-	max-width: 800px;
+	max-width: 700px;
+	padding-left: 10%;
+	margin-left: 5%;
 }
 
 .totals-header{
-	text-align: center;
+	padding-left: 35%;
+	font-family: 'Eagle Lake', cursive;
+	text-decoration: underline;
+	font-weight: 700px;
 }
 
 .modal {
@@ -111,7 +126,7 @@ font-family: 'Raleway', sans-serif;
 }
 
 #ExpenseAmount{
-	width: 180px;
+	width: 196px;
 }
 
 #ExpenseAssignee{
@@ -125,6 +140,12 @@ font-family: 'Raleway', sans-serif;
 
 .modal-header{
 	text-align: center;
+}
+
+#modalSelect{
+	min-width: 150px;
+    background: cornflowerblue;
+    color: aliceblue;
 }
 
 .close {
