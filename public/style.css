@@ -12,7 +12,7 @@ font-family: 'Raleway', sans-serif;
 }
 
 .signIn{
-	background-image: url("../billPhoto.jpg");
+	background-image: url("./billPhoto.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	z-index: 2;
