@@ -115,7 +115,9 @@ function getAndOrderTotals(){
 	getAllExpenses(createTotals);
 }
 
-
+$("#signUpBut").click(function(){
+	$(".signIn").toggleClass("hidden");
+})
 
 $(".create-button").click(function(){
 	console.log("running the put modal");
