@@ -8,7 +8,7 @@ font-family: 'Raleway', sans-serif;
 	text-align: center;
 	margin-bottom: 5%;
 	margin-top: 5%;
-	font-family: 'Eagle Lake', cursive;
+	font-family: 'Raleway', sans-serif;;
 }
 
 .signIn{
@@ -21,7 +21,7 @@ font-family: 'Raleway', sans-serif;
 
 .signIn > p{
 margin-top: 17%;
-font-family: 'Eagle Lake', cursive;
+font-family: 'Raleway', sans-serif;;
 color:#f2f2ff;
 font-size:50px;
 margin-bottom: 0;
@@ -33,7 +33,6 @@ margin-bottom: 0;
 	background: #71dcf5;
 	width: 100px;
 	height: 50px;
-	font-family: 'Raleway', sans-serif;
 }
 
 .display-container{
@@ -118,8 +117,7 @@ margin-bottom: 0;
 
 .totals-header{
 	padding-left: 35%;
-	font-family: 'Eagle Lake', cursive;
-	text-decoration: underline;
+	font-family: 'Raleway', sans-serif;
 	font-weight: 700px;
 }
 
