@@ -136,9 +136,11 @@ $(".create-button").click(function(){
 	$("#modalSubmit").click(function(event){
 		event.preventDefault(); 
 		console.log("form submitted");
-		var name = $("#ExpenseName").val().trim();
+		var nameLower = $("#ExpenseName").val().trim();
+		var name = nameLower.charAt(0).toUpperCase() + nameLower.slice(1);
 		var amount = $("#ExpenseAmount").val().trim();
-		var assignee = $("#ExpenseAssignee").val().trim() || "Not Yet Assigned";
+		var assigneeLower = $("#ExpenseAssignee").val().trim() || "Not Yet Assigned";
+		var assignee = assigneeLower.charAt(0).toUpperCase() + assigneeLower.slice(1);
 		if (typeof Number.parseFloat(amount)  === "number") {
 		  console.log("the if statement works");
 		postANewExpense(name, amount, assignee);
@@ -194,7 +196,8 @@ $(".update-button").click(function(){
 		var arrayNumber = e.options.selectedIndex;
 		console.log(selected);
 		var amount = $("#ExpenseAmount").val().trim();
-		var assignee = $("#ExpenseAssignee").val().trim();
+		var assigneeLower = $("#ExpenseAssignee").val().trim();
+		var assignee = assigneeLower.charAt(0).toUpperCase() + assigneeLower.slice(1);
 		putANewRequest(arrayNumber, amount, assignee, selected);
 		getAndDisplayExpenses();
 		getAndOrderTotals();
